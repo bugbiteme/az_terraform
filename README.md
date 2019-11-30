@@ -48,4 +48,18 @@ export ARM_TENANT_ID=your_tenant_id
 export ARM_ENVIRONMENT=public
 ```
 
+before running 
+
+`terraform apply`
+
+please generate the ssh key (default "id_rsa.pub")
+
+once VM has been created by terraform, you can get the public IP adress by running the following command:
+
+`az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --o tsv`
+
+Then connect to VM using the ssh key:
+
+`ssh -i "~/.ssh/id_rsa" azureuser@<IP address>`
+
 (source: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure)
