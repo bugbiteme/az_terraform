@@ -23,9 +23,6 @@ Azure CLI
 
 Your appId, password, sp_name, and tenant are returned. Make a note of the appId and password.
 
-Configure Terraform environment variables
-To configure Terraform to use your Azure AD service principal, set the following environment variables, which are then used by the Azure Terraform modules. You can also set the environment if working with an Azure cloud other than Azure public.
-
 ```
 ARM_SUBSCRIPTION_ID
 ARM_CLIENT_ID
@@ -34,25 +31,13 @@ ARM_TENANT_ID
 ARM_ENVIRONMENT
 ```
 
-You can use the following sample shell script to set those variables:
-
-```
-#!/bin/sh
-echo "Setting environment variables for Terraform"
-export ARM_SUBSCRIPTION_ID=your_subscription_id
-export ARM_CLIENT_ID=your_appId
-export ARM_CLIENT_SECRET=your_password
-export ARM_TENANT_ID=your_tenant_id
-
-# Not needed for public, required for usgovernment, german, china
-export ARM_ENVIRONMENT=public
-```
-
 before running 
 
 `terraform apply`
 
 please generate the ssh key (default "id_rsa.pub")
+
+*Note: you can generate the key with any name you want, but you need to update that in the .tf file
 
 once VM has been created by terraform, you can get the public IP adress by running the following command:
 
