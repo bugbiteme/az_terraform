@@ -48,3 +48,38 @@ Then connect to VM using the ssh key:
 `ssh -i "~/.ssh/id_rsa" azureuser@<IP address>`
 
 (source: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure)
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | ~> 0.12 |
+| archive | ~> 1.2 |
+| azurerm | ~> 1.44 |
+| random | ~> 2.2 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurerm | ~> 1.44 |
+| random | ~> 2.2 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| admin\_username | n/a | `string` | `"azureuser"` | no |
+| client\_secret | n/a | `string` | n/a | yes |
+| namespace | n/a | `string` | `"Terraform Demo"` | no |
+| pivate\_key | n/a | `string` | `"~/.ssh/id_rsa"` | no |
+| public\_key | n/a | `string` | `"~/.ssh/id_rsa.pub"` | no |
+| region | n/a | `string` | `"westus2"` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| admin\_username | n/a |
+| connection\_string | Copy/Paste/Enter - You are in the matrix |
+| public\_ip\_address | n/a |
+
