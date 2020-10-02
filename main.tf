@@ -145,3 +145,10 @@ resource "azurerm_virtual_machine" "myterraformvm" {
     }
 }
 
+resource "null_resource" "sleep" {
+  
+  provisioner "local-exec" {
+    command = "sleep 10"
+  }
+
+}
