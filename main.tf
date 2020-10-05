@@ -144,11 +144,23 @@ resource "azurerm_virtual_machine" "myterraformvm" {
         environment = var.namespace
     }
 }
+/*
+resource "null_resource" "update_os" {
 
-resource "null_resource" "sleep" {
-  
-  provisioner "local-exec" {
-    command = "sleep 10"
-  }
+    provisioner "remote-exec" {
+        
+        inline = [
+            "sudo apt-get update",
+            "sudo apt-get upgrade -y"
+        ]
+
+        connection {
+            type        = "ssh"
+            user        = var.admin_username
+            private_key = file("~/.ssh/id_rsa")
+            host        = azurerm_public_ip.myterraformpublicip.ip_address
+        }
+    }
 
 }
+*/
