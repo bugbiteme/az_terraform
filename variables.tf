@@ -1,4 +1,20 @@
 variable "client_secret" {
+  description = "client_secret used in azure provider"
+  type = string
+}
+
+variable "subscription_id" {
+  description = "subscription_id used in azure provider"
+  type = string
+}
+
+variable "client_id" {
+  description = "client_id used in azure provider"
+  type = string
+}
+
+variable "tenant_id" {
+  description = "tenant_id used in azure provider"
   type = string
 }
  

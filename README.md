@@ -1,7 +1,13 @@
 # az_terraform
 Terraform to provision a VM in Azure
 
-Prereq: Install azure and have it linked to your account
+Authenticates to Azure using either a Service Principal or Managed Service Identity.
+
+Instructions for setting up authentication:
+
+```
+https://www.terraform.io/docs/providers/azurerm/guides/service_principal_client_secret.html
+```
 
 If you have multiple Azure subscriptions, first query your account with az account list to get a list of subscription ID and tenant ID values:
 
@@ -37,9 +43,9 @@ before running
 
 please generate the ssh key (default "id_rsa.pub")
 
-*Note: you can generate the key with any name you want, but you need to update that in the .tf file
+*Note: you can generate the key with any name you want, but you need to update the variable with the new filename/location
 
-once VM has been created by terraform, you can get the public IP adress by running the following command:
+Once the VM has been created by terraform, you can get the public IP adress by running the following command:
 
 `az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --o tsv`
 
@@ -48,6 +54,12 @@ Then connect to VM using the ssh key:
 `ssh -i "~/.ssh/id_rsa" azureuser@<IP address>`
 
 (source: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure)
+
+Notes: Outputs for public IP address may be blank once `terraform apply` completes. You can then run the command 
+`terraform refresh` to obtain these values.
+
+If anyone reading this has a workaround, please let me know (beer or lunch will be on me!)
+
 ## Requirements
 
 | Name | Version |
@@ -69,17 +81,20 @@ Then connect to VM using the ssh key:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | admin\_username | n/a | `string` | `"azureuser"` | no |
-| client\_secret | n/a | `string` | n/a | yes |
+| client\_id | client\_id used in azure provider | `string` | n/a | yes |
+| client\_secret | client\_secret used in azure provider | `string` | n/a | yes |
 | namespace | n/a | `string` | `"Terraform Demo"` | no |
 | pivate\_key | n/a | `string` | `"~/.ssh/id_rsa"` | no |
 | public\_key | n/a | `string` | `"~/.ssh/id_rsa.pub"` | no |
 | region | n/a | `string` | `"westus2"` | no |
+| subscription\_id | subscription\_id used in azure provider | `string` | n/a | yes |
+| tenant\_id | tenant\_id used in azure provider | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| admin\_username | n/a |
+| admin\_username | Username needed to log into VM consol |
 | connection\_string | Copy/Paste/Enter - You are in the matrix |
-| public\_ip\_address | n/a |
+| public\_ip\_address | Public IP address of VM |
 
