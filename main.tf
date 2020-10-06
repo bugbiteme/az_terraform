@@ -33,6 +33,8 @@ resource "azurerm_public_ip" "myterraformpublicip" {
     location                     = var.region
     resource_group_name          = azurerm_resource_group.myterraformgroup.name
     allocation_method            = "Dynamic"
+    
+    
 
     tags = {
         environment = var.namespace
@@ -140,9 +142,12 @@ resource "azurerm_virtual_machine" "myterraformvm" {
         storage_uri = azurerm_storage_account.mystorageaccount.primary_blob_endpoint
     }
 
+   
     tags = {
         environment = var.namespace
     }
+
+    
 }
 /*
 resource "null_resource" "update_os" {
