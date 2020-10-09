@@ -2,13 +2,13 @@
 
 output "public_ip_address" {
   description = "Public IP address of VM"
-  value = "${azurerm_public_ip.myterraformpublicip.ip_address}"
+  value = azurerm_public_ip.myterraformpublicip.ip_address
  
 }
 
 output "admin_username" {
   description = "Username needed to log into VM consol"
-  value = "${var.admin_username}"
+  value = var.admin_username
 }
 
 output "connection_string" {
