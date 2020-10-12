@@ -169,14 +169,14 @@ resource "null_resource" "update_os" {
             type        = "ssh"
             user        = var.admin_username
             private_key = file("~/.ssh/id_rsa")
-            host        = azurerm_public_ip.myterraformpublicip.ip_address
+            host        = data.azurerm_public_ip.ip.ip_address
         }
     }
 
 }
-
-
 */
+
+
 
 
 

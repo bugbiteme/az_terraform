@@ -60,6 +60,14 @@ Notes: Outputs for public IP address may be blank once `terraform apply` complet
 
 If anyone reading this has a workaround, please let me know (beer or lunch will be on me!)
 
+To show configuration:
+`terraform show`
+
+List resources in the state
+`terraform state list`
+
+To visualize dependencies:
+`terraform graph | dot -Tsvg > graph.svg`
 ## Requirements
 
 | Name | Version |
