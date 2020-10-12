@@ -149,6 +149,12 @@ resource "azurerm_virtual_machine" "myterraformvm" {
 
     
 }
+
+data "azurerm_public_ip" "ip" {
+  name                = azurerm_public_ip.myterraformpublicip.name
+  resource_group_name = azurerm_virtual_machine.myterraformvm.resource_group_name
+  depends_on          = [azurerm_virtual_machine.myterraformvm]
+}
 /*
 resource "null_resource" "update_os" {
 
